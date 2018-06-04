@@ -31,11 +31,11 @@ def classify_video(video_dir, video_name, class_names, model, opt):
     video_outputs = torch.cat(video_outputs)
     video_segments = torch.cat(video_segments)
     results = {
-        'video': video_name,
-        'clips': []
+        video_name.split('.')[0]: video_outputs.numpy()
     }
 
     _, max_indices = video_outputs.max(dim=1)
+    '''
     for i in range(video_outputs.size(0)):
         clip_results = {
             'segment': video_segments[i].tolist(),
@@ -48,5 +48,5 @@ def classify_video(video_dir, video_name, class_names, model, opt):
             clip_results['features'] = video_outputs[i].tolist()
 
         results['clips'].append(clip_results)
-
+    '''
     return results

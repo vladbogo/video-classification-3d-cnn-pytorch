@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import pickle
 import subprocess
 import numpy as np
 import torch
@@ -64,5 +65,6 @@ if __name__=="__main__":
     if os.path.exists('tmp'):
         subprocess.call('rm -rf tmp', shell=True)
 
-    with open(opt.output, 'w') as f:
-        json.dump(outputs, f)
+    with open(opt.output, 'wb') as f:
+        pickle.dump(outputs, f)
+    print('DONE')
